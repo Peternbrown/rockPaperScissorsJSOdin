@@ -1,6 +1,3 @@
-//initialize computer player's random selection for RPS in the correct scope
-let computerChoice;
-
 // Function that randomly selects rock paper or scissors and assigns it to the computerChoice variable
 function getComputerChoice() {
     
@@ -12,20 +9,40 @@ function getComputerChoice() {
     // switch fuction to convert the random number into RPS
     switch (getRandomInt(3)) {
         case 0:
-            computerChoice = "rock";
+            return 0;
+            computerChoiceWord = "rock";
             break;
         case 1:
-            computerChoice = "paper";
+            return 1;
+            computerChoiceWord = "paper";
             break;
         case 2:
-            computerChoice = "scissors";
+            return 2;
+            computerChoiceWord = "scissors";
             break;
     }
-
 };
 
-function playRound() {
-    let playerSelection = prompt("Let's play Rock, Paper, Scissors!\n\nEnter 1 for rock\nEnter 2 for paper\nEnter 3 for scissors");
+function playRound(computerSelection) {
+    let playerSelection = prompt("Let's play Rock, Paper, Scissors!\n\nEnter 0 for rock\nEnter 1 for paper\nEnter 2 for scissors");
 
-    return playerSelection;
+    if (playerSelection === computerSelection) {
+        return concat("Its a Tie! You both chose ", computerChoiceWord, ". Play again!");
+    } else if (playerSelection == 0 && computerSelection == 1) {
+        return "The computer chose paper. You lose!";
+    } else if (playerSelection == 0 && computerSelection == 2) {
+        return "The computer chose scissors. You win!";
+    } else if (playerSelection == 1 && computerSelection == 2) {
+        return "The computer chose scissors. You lose!";
+    } else if (playerSelection == 1 && computerSelection == 0) {
+        return "The computer chose rock. You win!";
+    } else if (playerSelection == 2 && computerSelection == 1) {
+        return "The computer chose paper. You win!";
+    } else if (playerSelection == 2 && computerSelection == 0) {
+        return "The computer chose rock. You lose!";
+    };
 };
+
+let computerChoiceWord;
+const computerSelection = 0;
+console.log(playRound(computerSelection));
